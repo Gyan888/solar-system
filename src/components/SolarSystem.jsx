@@ -9,8 +9,8 @@ let SolarSystem = () =>{
 
     let orbitData = {value: 200, runOrbit: true, runRotation: true};
 
-    let getTube = (outerRadius, innerRadius, facets, myColor, name, distanceFromAxis) => {
-        var ringGeometry = new THREE.TorusGeometry(outerRadius, innerRadius, facets, facets);
+    let getTube = (outerRadius, innerRadius, facets, segement,myColor, name, distanceFromAxis) => {
+        var ringGeometry = new THREE.TorusGeometry(outerRadius, innerRadius, facets, segement);
         var ringMaterial = new THREE.MeshBasicMaterial({color: myColor, side: THREE.DoubleSide});
         let myRing = new THREE.Mesh(ringGeometry, ringMaterial);
         myRing.name = name;
@@ -237,15 +237,15 @@ let SolarSystem = () =>{
         scene.add(jupiter);
 
 
-        let saturnData = constructPlanetData(375, 0.015, 32, "saturn", "/Planets/saturn.jpg", 1.5, 48); // created a earth json
+        let saturnData = constructPlanetData(375, 0.015, 34, "saturn", "/Planets/saturn.jpg", 1.5, 48); // created a earth json
         let saturn = loadTexturedPlanet(saturnData, saturnData.distanceFromAxis, 0, 0); // creating earth sphere object with material
         let saturnRing = createVisibleOrbits(saturnData); // creating earth ring
         scene.add(saturnRing);
         scene.add(saturn);
 
 
-        // creating saturn ring f
-        let saturnOuterRing = getTube(1.75, 0.3, 480, 0x757064, "ring", saturnData.distanceFromAxis);
+        // creating saturn ring
+        let saturnOuterRing = getTube(2.5, 0.4, 2, 23, 0x757064, "ring", saturnData.distanceFromAxis);
         scene.add(saturnOuterRing);
 
 
@@ -306,7 +306,7 @@ let SolarSystem = () =>{
             let data = planets[planet].data;
             movePlanet(obj, data, time);
         });
-        movePlanet(saturnOuterRing, planets.saturn.data, time);
+        movePlanet(saturnOuterRing, planets.saturn.data, time, true);
         moveMoon(moon.obj, planets.earth.obj, moon.data, time);
         requestAnimationFrame(() => animate(data));
         renderer.render(scene, camera);
