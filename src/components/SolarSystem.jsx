@@ -217,7 +217,7 @@ let SolarSystem = () =>{
 
 
         // creating moon
-        let moonData = constructPlanetData(29.5, 0.01, 1.9, "moon", "/Planets/moon.jpg", 0.25, 48); // created moon json
+        let moonData = constructPlanetData(29.5, 0.01, 1.3, "moon", "/Planets/moon.jpg", 0.25, 48); // created moon json
         let moon = loadTexturedPlanet(moonData, moonData.distanceFromAxis, 0, 0); // created moon sphere object with material
         scene.add(moon);
 
