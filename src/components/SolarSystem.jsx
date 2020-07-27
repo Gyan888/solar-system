@@ -64,6 +64,7 @@ let SolarSystem = () =>{
         var passThisTexture;
 
         if (myData.texture && myData.texture !== "") {
+            THREE.ImageUtils.crossOrigin = '';
             passThisTexture = new THREE.ImageUtils.loadTexture(myData.texture);
         }
         if (myMaterialType) {
